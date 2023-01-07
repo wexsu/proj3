@@ -12,15 +12,24 @@ int getcpu( unsigned *cpu, unsigned *node )
     return syscall( SYS_getcpu, cpu, node, NULL );
 }
 
-/*int get_cpu_number( unsigned *cpu )
+int get_cpu_number( unsigned *cpu )
 {
-    return syscall( __NR_get_cpu_number, cpu );
-}*/
+    return *cpu = syscall( __NR_get_cpu_number );
+}
 
-int main()
+int main(void)
 {
     unsigned cpu;
     unsigned node;
+
+    if( get_cpu_number(&cpu)==-1 )
+    {
+        printf( "getcpu failed\n" );
+        return 1;
+    }
+    
+    printf( "mysys: cpu = %u \n", cpu );
+    
 
     if( getcpu( &cpu, &node )==-1 )
     {
@@ -28,7 +37,7 @@ int main()
         return 1;
     }
 
-    printf( "cpu = %u, node = %u \n", cpu, node );
+    printf( "getcpu: cpu = %u, node = %u \n", cpu, node );
 
     return 0;
 }
