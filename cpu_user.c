@@ -7,11 +7,6 @@
 
 #define __NR_get_cpu_number 700
 
-/*struct getcpu_cache
-{
-    unsigned long blolb[128/sizeof(long)];
-}*/
-
 int getcpu( unsigned *cpu, unsigned *node )
 {
     return syscall( SYS_getcpu, cpu, node, NULL );
