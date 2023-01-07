@@ -20,15 +20,9 @@ int get_cpu_number( unsigned *cpu )
 int main(void)
 {
     unsigned cpu;
-    unsigned node;
-
-    if( get_cpu_number(&cpu)==-1 )
-    {
-        printf( "getcpu failed\n" );
-        return 1;
-    }
+    unsigned node;  
     
-    printf( "mysys: cpu = %u \n", cpu );
+    printf( "mysys: cpu = %u \n", get_cpu_number(&cpu) );
     
 
     if( getcpu( &cpu, &node )==-1 )
